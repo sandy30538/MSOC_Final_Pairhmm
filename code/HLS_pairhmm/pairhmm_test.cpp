@@ -53,17 +53,10 @@ int main(int argc, char *argv[])
 		pairhmm(haplotype, read, read_BQ, bias_score, m2m, i2m, m2i, i2i, BQ0_match, BQ0_mismatch, BQ1_match, BQ1_mismatch, BQ2_match, BQ2_mismatch, BQ3_match, BQ3_mismatch, &highest_score);
 
 		cout << "Result " << i << " = " << highest_score << endl;
+        cout << "------------------------" << endl;
 	}
 
 
-	cout << "------------------------" << endl;
-
-	if(!pass) {
-		cout << ">> Test failed!" << endl;
-		return 1;
-	}
-
-	cout << ">> Test passed!" << endl;
-	cout << "------------------------" << endl;
+	
 	return 0;
 }
