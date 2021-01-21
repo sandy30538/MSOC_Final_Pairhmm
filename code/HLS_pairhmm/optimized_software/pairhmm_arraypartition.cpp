@@ -42,11 +42,12 @@ void pairhmm(
     *highest_score = -pow(2, 15);
 
 	#pragma HLS array_partition variable=align_scores complete dim=2
-	#pragma HLS array_partition variable=insert_scores complete dim=2
-    #pragma HLS array_partition variable=delete_scores complete dim=2
+	//#pragma HLS array_partition variable=insert_scores complete dim=2
+    //#pragma HLS array_partition variable=delete_scores complete dim=2
 	//#pragma HLS array_partition variable=scores complete dim=2
 
     for (int i=0; i<read_len; ++i) {
+        //#pragma HLS pipeline II=1
         for (int j=0; j<haplotype_len; ++j) {
             // align scores operation
 			//#pragma HLS pipeline II=1
@@ -79,7 +80,7 @@ void pairhmm(
             temp_insert_score = insert_scores[i][j] + weight + i2m;
             temp_delete_score = delete_scores[i][j] + weight + i2m;
             if (temp_delete_score > temp_align_score && temp_delete_score > temp_insert_score)
-				#pragma HLS pipeline II=1
+				//#pragma HLS pipeline II=1
                 align_scores[i+1][j+1] = temp_delete_score;
             else if (temp_insert_score > temp_align_score)
                 align_scores[i+1][j+1] = temp_insert_score;
@@ -90,7 +91,7 @@ void pairhmm(
             temp_align_score  = align_scores[i][j+1]  + m2i;
             temp_insert_score = insert_scores[i][j+1] + i2i;
             if (temp_insert_score > temp_align_score)
-				#pragma HLS pipeline II=1
+				//#pragma HLS pipeline II=1
                 insert_scores[i+1][j+1] = temp_insert_score;
             else
                 insert_scores[i+1][j+1] = temp_align_score;
@@ -99,7 +100,7 @@ void pairhmm(
             temp_align_score  = align_scores[i+1][j]  + m2i;
             temp_delete_score = delete_scores[i+1][j] + i2i;
             if (temp_delete_score > temp_align_score)
-				#pragma HLS pipeline II=1
+				//#pragma HLS pipeline II=1
                 delete_scores[i+1][j+1] = temp_delete_score;
             else
                 delete_scores[i+1][j+1] = temp_align_score;
@@ -109,14 +110,14 @@ void pairhmm(
             temp_insert_score = insert_scores[i+1][j+1];
             temp_delete_score = delete_scores[i+1][j+1];
             if (temp_insert_score > temp_align_score)
-				#pragma HLS pipeline II=1
+				//#pragma HLS pipeline II=1
                 scores[i][j] = temp_insert_score;
             else
                 scores[i][j] = temp_align_score;
 
             if (i == read_len-1) {
                 if (scores[i][j] > *highest_score)
-					#pragma HLS pipeline II=1
+					//#pragma HLS pipeline II=1
                     *highest_score = scores[i][j];
             }
         }
