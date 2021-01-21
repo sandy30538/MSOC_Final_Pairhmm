@@ -22,13 +22,13 @@ void pairhmm(
     int insert_scores[read_len][haplotype_len] = {0};
     int delete_scores[read_len][haplotype_len] = {0};
     
-    for (int j = 0; j < haplotype_len + 1; ++j) {
+    for (int j = 0; j < haplotype_len; ++j) {
         #pragma HLS unroll
         align_scores [0][j] = -pow(2, 15);
         insert_scores[0][j] = -pow(2, 15);
         delete_scores[0][j] = bias_score;
     }
-    for (int i = 1; i < read_len + 1; ++i) {
+    for (int i = 1; i < read_len; ++i) {
         #pragma HLS unroll
         align_scores [i][0] = -pow(2, 15);
         insert_scores[i][0] = -pow(2, 15);
