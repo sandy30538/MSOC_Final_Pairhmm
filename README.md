@@ -1,12 +1,12 @@
 # MSOC_Final_Pairhmm
 
-# Self-paced-Learning-Project-Sobel-Filter
+# High Level Synthesis (HLS) and RTL Implementation in Pair-HMM Algorithm for Sequencing Data Analysis
 
 
 <br />
 <p align="center">
 
-  <h3 align="center">MSOC-HLS Self-paced Learning Project_1 - Sobel Filter</h3>
+  <h3 align="center">MSOC-HLS Final Project </h3>
   
 </p>
 
@@ -23,7 +23,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-The github repository for hls projects - Sobel Filter
+The github repository for 109-1 Final Project HLS projects - High Level Synthesis (HLS) and RTL Implementation in Pair-HMM Algorithm for Sequencing Data Analysis
 
 **Directory structure**
 * **README.md** - introduce the project, algorithm, usage, reference and contact information
