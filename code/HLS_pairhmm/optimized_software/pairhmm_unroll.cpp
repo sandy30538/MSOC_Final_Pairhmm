@@ -49,6 +49,7 @@ void pairhmm(
 
     for (int i=0; i<read_len; ++i) {
         for (int j=0; j<haplotype_len; ++j) {
+	    #pragma HLS unroll
             // align scores operation
             char read_base = read[i];
             char haplotype_base = haplotype[j];
